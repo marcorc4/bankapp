@@ -1,0 +1,61 @@
+# Bank App Account Management
+
+This project is a RESTful API built with **Spring Boot** that manages bank accounts. It exposes endpoints to list existing accounts, create new ones, perform deposits or withdrawals, and delete accounts. Data is persisted in a MySQL database, and the API is documented automatically using the OpenAPI/Swagger standards.
+
+## Key Features
+
+- **RESTful service**: exposes clear HTTP routes to manage accounts (list, create, deposit, withdraw, and delete) under a common `/api/accounts` prefix.
+- **Spring Boot configuration**: leverages Spring Boot’s auto‑configuration and dependency injection to simplify setup and deployment.
+- **Persistent storage**: uses MySQL as the underlying database to store account information.
+- **API documentation**: integrates springdoc‑openapi to automatically generate an OpenAPI specification and provide an interactive Swagger UI.
+- **Custom OpenAPI bean**: includes a configuration class that defines the API’s title, version, description, contact details, and a development server.
+- **Lombok integration**: uses Lombok annotations to reduce boilerplate code (`@Getter`, `@Setter`, etc.).
+
+## Prerequisites
+
+To build and run this project you need:
+
+- **JDK 21** – the project is compiled and executed with Java 21.
+- **Maven 3.8+** (or the included `mvnw` wrapper).
+- An IDE or text editor that supports Java projects (IntelliJ IDEA, Eclipse, VS Code, etc.).
+- **Lombok** – ensure the dependency is declared in `pom.xml`, install the Lombok plugin in your IDE, and enable annotation processing.
+- A running **MySQL** database server to persist account data. Configure the connection URL, username, and password in `src/main/resources/application.properties` or via environment variables.
+
+## Building and Running
+
+You can run the application using the Maven wrapper provided in the project.
+
+### Option 1: Run directly from source (for development)
+
+This command compiles and launches the application:
+
+```bash
+./mvnw spring-boot:run
+
+Once it starts, it will be accessible at:
+http://localhost:8080
+
+To stop the application, press Ctrl + C in the terminal.
+
+### Option 2: Build a JAR package
+
+To generate a `.jar` file:
+
+```bash
+./mvnw clean package
+
+After that, you can run the JAR manually:
+
+java -jar target/bankapp-0.0.1-SNAPSHOT.jar
+
+The application will be available at:
+http://localhost:8080
+
+| Method | Endpoint                      | Description           |
+| ------ | ----------------------------- | --------------------- |
+| GET    | `/api/accounts`               | List all accounts     |
+| GET    | `/api/accounts/{id}`          | Get account by ID     |
+| POST   | `/api/accounts`               | Create a new account  |
+| PUT    | `/api/accounts/{id}/deposit`  | Deposit into account  |
+| PUT    | `/api/accounts/{id}/withdraw` | Withdraw from account |
+| DELETE | `/api/accounts/{id}`          | Delete account by ID  |
